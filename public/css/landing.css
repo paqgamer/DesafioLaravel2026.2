@@ -1,0 +1,152 @@
+* {
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+/* gostei da fonte inter, usei no figma e é legível */
+body {
+    margin: 0;
+    background: #f5f6fa;
+    color: #111;
+}
+
+.navbar {
+    height: 80px;
+    background: #111a2c;
+    color: white;
+    display: flex;
+    align-items: center;
+    padding: 0px 10px;
+    gap: 20px;
+    border-bottom: 1px solid #65718a;
+}
+
+.logo {
+    height:;
+}
+
+/* .logo span {
+            color: #d8b84d;
+        } */
+
+.search {
+    flex: 1;
+    display: flex;
+    border-radius: 35px;
+    height: 25px;
+}
+
+.category {
+    background: white;
+    border: none;
+    border-right: 1px solid #aaa;
+    font-size: 12px;
+}
+
+.search input {
+    flex: 1;
+    border: none;
+}
+
+button {
+    border: none;
+    cursor: pointer;
+}
+
+.login {
+    background: #2563eb;
+    color: white;
+    border-radius: 15px;
+    padding: 5px 14px;
+}
+
+.cart-button-landing {
+    background: #16c784;
+    color: white;
+    border-radius: 15px;
+    padding: 5px 14px;
+}
+
+.hero {
+    background: #111a2c;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner {
+    width: 320px;
+    height: 70px;
+    background: #697993;
+    border-radius: 15px;
+    text-align: center;
+    color: white;
+    padding-top: 8px;
+}
+
+.banner h2 {
+    margin: 0;
+    font-size: 15px;
+}
+
+.banner .brand {
+    font-size: 28px;
+}
+
+.brand span {
+    color: #e4bd43;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 105px);
+    justify-content: center;
+    gap: 25px 10px;
+    padding: 15px;
+}
+
+.card {
+    background: white;
+    width: 105px;
+    min-height: 150px;
+    border-radius: 15px;
+    border: 1px solid #777;
+    padding: 5px;
+    overflow: hidden;
+}
+
+.card img {
+    width: 100%;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.title {
+    font-size: 9px;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 9px;
+    margin-top: 8px;
+}
+
+.buy {
+    background: #16c784;
+    color: white;
+    font-size: 8px;
+    border-radius: 8px;
+    padding: 3px 5px;
+}
+
+.details {
+    text-align: center;
+    font-size: 7px;
+    margin-top: 8px;
+    color: #333;
+}
