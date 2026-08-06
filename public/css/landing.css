@@ -20,10 +20,6 @@ body {
     border-bottom: 1px solid #65718a;
 }
 
-.logo {
-    height:;
-}
-
 /* .logo span {
             color: #d8b84d;
         } */
@@ -99,49 +95,79 @@ button {
 
 .products {
     display: grid;
-    grid-template-columns: repeat(4, 105px);
-    justify-content: center;
-    gap: 25px 10px;
-    padding: 15px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-
+/* mudei a porra toda 
+peguei inspiracao no blog do trainee */
 .card {
     background: white;
-    width: 105px;
-    min-height: 150px;
-    border-radius: 15px;
-    border: 1px solid #777;
-    padding: 5px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-color: #ef4444;
+}
+
+.card-body {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
 .card img {
     width: 100%;
-    height: 70px;
+    aspect-ratio: 1 / 1;
     object-fit: cover;
-    border-radius: 10px;
 }
 
 .title {
-    font-size: 9px;
-    height: 30px;
-    margin-top: 5px;
+    font-size: 13px;
+    color: #222;
+    margin-bottom: 10px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .price {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 9px;
-    margin-top: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ef4444;
+}
+.price-row {
+    margin-top: auto;
+    margin-bottom: 10px;
 }
 
 .buy {
-    background: #16c784;
+    width: 100%;
+    background: #10b981;
     color: white;
-    font-size: 8px;
-    border-radius: 8px;
-    padding: 3px 5px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 2px;
+    padding: 8px;
+    transition: background 0.2s;
+}
+
+.buy:hover {
+    background: #ef4444;
 }
 
 .details {

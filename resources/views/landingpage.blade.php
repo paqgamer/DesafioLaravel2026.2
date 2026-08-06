@@ -49,48 +49,69 @@
     </section>
 
 
-    <section class="products">
+   <section class="products">
 
-
-        <div class="card">
-            <img src="produto.jpg">
-
-            <div class="title">
-                Computador semi-novo,
-                roda todos os jogos
+    <!-- ex1 -->
+    <div class="card">
+        <img src="{{ asset('image/produto.jpg') }}" alt="Computador semi-novo">
+        <div class="card-body">
+            <div class="title">Computador semi-novo, roda todos os jogos pesados sem travar</div>
+            <div class="price-row">
+                <span class="price">R$ 2.199,99</span>
             </div>
+            <button class="buy">Comprar</button>
+        </div>
+    </div>
 
-            <div class="price">
-                R$ 2199,99
-                <button class="buy">
-                    🛒 Comprar
-                </button>
+    <!-- Exemplo2-->
+    <div class="card">
+        <img src="{{ asset('image/teclado.jpg') }}" alt="Teclado Mecânico">
+        <div class="card-body">
+            <div class="title">Teclado mecainico sswtich Blue RGB</div>
+            <div class="price-row">
+                <span class="price">R$ 150,00</span>
             </div>
+            <button class="buy">Comprar</button>
+        </div>
+    </div>
 
-            <div class="details">
-                Ver detalhes...
+    <!-- card 3 -->
+    <div class="card">
+        <img src="{{ asset('image/mouse.jpg') }}" alt="Mouse Gamer">
+        <div class="card-body">
+            <div class="title">Mouse Gamer 10000 DPI com botões laterais configuráveis</div>
+            <div class="price-row">
+                <span class="price">R$ 89,90</span>
             </div>
+            <button class="buy">Comprar</button>
         </div>
+    </div>
 
-        <!--temporario até eu implementar o for each-->
-        <div class="card"><img src="produto.jpg">
-            <div class="title">Computador semi-novo, roda todos os jogos</div>
-            <div class="price">R$ 2199,99 <button class="buy">Comprar</button></div>
-            <div class="details">Ver detalhes...</div>
+    <!-- exemplo 4 -->
+    <div class="card">
+        <img src="{{ asset('image/fone.jpg') }}" alt="Headset Gamer">
+        <div class="card-body">
+            <div class="title">Headset Surround 7.1 Microfone Noise Cancelling</div>
+            <div class="price-row">
+                <span class="price">R$ 230,00</span>
+            </div>
+            <button class="buy">Comprar</button>
         </div>
-        <div class="card"><img src="produto.jpg">
-            <div class="title">Computador semi-novo, roda todos os jogos</div>
-            <div class="price">R$ 2199,99 <button class="buy">Comprar</button></div>
-            <div class="details">Ver detalhes...</div>
-        </div>
-        <div class="card"><img src="produto.jpg">
-            <div class="title">Computador semi-novo, roda todos os jogos</div>
-            <div class="price">R$ 2199,99 <button class="buy">Comprar</button></div>
-            <div class="details">Ver detalhes...</div>
-        </div>
+    </div>
 
-    </section>
-{{-- still gonna fix the section tag, will commit for now to avoid issues later --}}
+    <!-- card 5 -->
+    <div class="card">
+        <img src="{{ asset('image/monitor.webp') }}" alt="Monitor 144hz">
+        <div class="card-body">
+            <div class="title">Monitor Gamer 24 (la ele) 144hz 1ms IPS</div>
+            <div class="price-row">
+                <span class="price">R$ 950,00</span>
+            </div>
+            <button class="buy">Comprar</button>
+        </div>
+    </div>
+
+</section>
 
 </body>
 
