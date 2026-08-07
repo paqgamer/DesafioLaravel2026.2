@@ -30,6 +30,9 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'cpf' => fake()->unique()->numerify('###########'), //vou ser preso por fazer gerador de cfp
+            'phone' => fake()->phoneNumber(),
+            'is_admin' => false,
         ];
     }
 
