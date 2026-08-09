@@ -38,7 +38,7 @@
 
     </header>
 
-{{-- ARRUMAR ISSO AQUI --}}
+    {{-- ARRUMAR ISSO AQUI --}}
     <section class="hero">
         <div class="banner">
             <h2>Os melhores Produtos Aqui no</h2>
@@ -49,69 +49,27 @@
     </section>
 
 
-   <section class="products">
+    <section class="products">
+        @foreach ($produtos as $produto)
+            <div class="card">
+                    {{-- isso aqui ta temporario pra funcionar com o lorempicsum --}}
+              <img src="{{ $produto->image_url }}" alt="Foto de {{ $produto->name }}">
 
-    <!-- ex1 -->
-    <div class="card">
-        <img src="{{ asset('image/produto.jpg') }}" alt="Computador semi-novo">
-        <div class="card-body">
-            <div class="title">Computador semi-novo, roda todos os jogos pesados sem travar</div>
-            <div class="price-row">
-                <span class="price">R$ 2.199,99</span>
+                <div class="card-content">
+                    <div class="title">
+                        {{ $produto->name }}
+                    </div>
+
+                    <div class="price">
+
+                        R$ {{ number_format($produto->price, 2, ',', '.') }}
+                        <button class="buy">Comprar</button>
+                    </div>
+                </div>
             </div>
-            <button class="buy">Comprar</button>
-        </div>
-    </div>
+        @endforeach
 
-    <!-- Exemplo2-->
-    <div class="card">
-        <img src="{{ asset('image/teclado.jpg') }}" alt="Teclado Mecânico">
-        <div class="card-body">
-            <div class="title">Teclado mecainico sswtich Blue RGB</div>
-            <div class="price-row">
-                <span class="price">R$ 150,00</span>
-            </div>
-            <button class="buy">Comprar</button>
-        </div>
-    </div>
-
-    <!-- card 3 -->
-    <div class="card">
-        <img src="{{ asset('image/mouse.jpg') }}" alt="Mouse Gamer">
-        <div class="card-body">
-            <div class="title">Mouse Gamer 10000 DPI com botões laterais configuráveis</div>
-            <div class="price-row">
-                <span class="price">R$ 89,90</span>
-            </div>
-            <button class="buy">Comprar</button>
-        </div>
-    </div>
-
-    <!-- exemplo 4 -->
-    <div class="card">
-        <img src="{{ asset('image/fone.jpg') }}" alt="Headset Gamer">
-        <div class="card-body">
-            <div class="title">Headset Surround 7.1 Microfone Noise Cancelling</div>
-            <div class="price-row">
-                <span class="price">R$ 230,00</span>
-            </div>
-            <button class="buy">Comprar</button>
-        </div>
-    </div>
-
-    <!-- card 5 -->
-    <div class="card">
-        <img src="{{ asset('image/monitor.webp') }}" alt="Monitor 144hz">
-        <div class="card-body">
-            <div class="title">Monitor Gamer 24 (la ele) 144hz 1ms IPS</div>
-            <div class="price-row">
-                <span class="price">R$ 950,00</span>
-            </div>
-            <button class="buy">Comprar</button>
-        </div>
-    </div>
-
-</section>
+    </section>
 
 </body>
 

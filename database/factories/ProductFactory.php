@@ -22,7 +22,7 @@ class ProductFactory extends Factory
         'description' => fake()->paragraph(),
         'price' => fake()->randomFloat(2, 50, 5000), 
         'stock_quantity' => fake()->numberBetween(1, 50),
-        'image_url' => null, 
+        'image_url' => 'https://picsum.photos/400/400?random=' . fake()->unique()->numberBetween(1, 1000),
         
             //cria user e categoria se nao tiver especificado
         'category_id' => \App\Models\Category::factory(),
