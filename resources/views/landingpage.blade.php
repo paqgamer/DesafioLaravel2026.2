@@ -61,8 +61,8 @@
                     </div>
 
                     <div class="price">
-
-                        R$ {{ number_format($produto->price, 2, ',', '.') }}
+                            {{-- uau, o helper funcionou --}}
+                        <p class="product-price">{{ format_price($produto->price) }}</p>
                         <button class="buy">Comprar</button>
                     </div>
                 </div>
