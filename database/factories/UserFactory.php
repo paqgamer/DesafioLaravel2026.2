@@ -28,7 +28,8 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('password'),
+            'password' => static::$password ??= Hash::make('123123'),
+            // mudei a senha pra 123123 pra digitar mais rapido pra testar
             'remember_token' => Str::random(10),
             'cpf' => fake()->unique()->numerify('###########'), //vou ser preso por fazer gerador de cfp
             'phone' => fake()->phoneNumber(),

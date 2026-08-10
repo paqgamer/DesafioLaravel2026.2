@@ -17,20 +17,29 @@
     {{-- Vou separar a navbar ainda --}}
     <header class="navbar">
 
-        <div class="logo">
+        <a class="logo" href="/">
             <img src="{{ asset('image/alogodesafio.png') }}" alt="De$afio" height="40">
-        </div>
+        </a>
 
-        <div class="search">
-            <select class="category">
-                <option>Categoria</option>
+        <form action="/" method="GET" class="search">
+            <select class="category" name="category_id">
+                <option value="">Todas as Categorias</option>
+                @foreach ($categorias as $categoria)
+                    <option value="{{ $categoria->id }}"
+                        {{ request('category_id') == $categoria->id ? 'selected' : '' }}>
+                        {{ $categoria->name }}
+                    </option>
+                @endforeach
             </select>
-            <input type="text" name="search" placeholder="Buscar produtos...">
-        </div>
 
-        <button class="login">
+            <input type="text" name="search" placeholder="Buscar produtos..." value="{{ request('search') }}">
+
+            <button type="submit" style="display: none;">Buscar</button>
+        </form>
+
+        <a class="login" href="/login">
             Login
-        </button>
+        </a>
 
         <button class="cart-button-landing">
             🛒 Carrinho
@@ -52,23 +61,24 @@
     <section class="products">
         @foreach ($produtos as $produto)
             <div class="card">
-                    {{-- isso aqui ta temporario pra funcionar com o lorempicsum --}}
-              <img src="{{ $produto->image_url }}" alt="Foto de {{ $produto->name }}">
-
+                <img src="{{ asset($produto->image_url) }}" alt="Foto de {{ $produto->name }}"> 
+                {{-- enfiei a categoria no card pq fica mais inuitivo --}}
                 <div class="card-content">
+                    <span class="category-badge">
+                        {{ $produto->category->name ?? 'Sem categoria' }}
+                    </span>
+
                     <div class="title">
                         {{ $produto->name }}
                     </div>
 
                     <div class="price">
-                            {{-- uau, o helper funcionou --}}
                         <p class="product-price">{{ format_price($produto->price) }}</p>
                         <button class="buy">Comprar</button>
                     </div>
                 </div>
             </div>
         @endforeach
-
     </section>
 
 </body>

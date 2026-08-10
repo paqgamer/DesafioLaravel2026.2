@@ -42,8 +42,8 @@ class DatabaseSeeder extends Seeder
             return Category::create(['name' => $nome]);
         });
 
-        // 30 produto falso (ficticio, não é falsificado)
-        Product::factory(30)
+        // mudei agora de 30 pra 60 produto falso (ficticio, não é falsificado)
+        Product::factory(60)
             ->recycle($users)
             ->recycle($categories)
             ->create();

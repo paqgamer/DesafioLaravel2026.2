@@ -3,16 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Product; //eu tinha esquecido dessa bosta
+use App\Models\Product;
+use App\Models\Category; 
 
 class HomeController extends Controller
 {
-    public function index()
-    {
-    // Pegar 10 produto aleatorio pra testar
-    $produtos = Product::inRandomOrder()->take(10)->get();
-        
 
-        return view('landingpage', compact('produtos'));
+public function index(Request $request)
+    {
+
+    $query = Product::with('category');
+
+
+    if ($request->filled('search')) {
+            $query->where('name', 'like', '%' . $request->search . '%');
+        }
+
+
+        if ($request->filled('category_id')) {
+            $query->where('category_id', $request->category_id);
+        }
+
+
+
+        $produtos = $query->take(10)->get(); 
+
+        $categorias = Category::all();
+
+        return view('landingpage', compact('produtos', 'categorias'));
     }
 }
