@@ -1,4 +1,4 @@
-<p align="center"><a href="https://codejr.com.br/" target="_blank"><img src="https://codejr.com.br/wp-content/uploads/elementor/thumbs/Da-uma-olhada-no-design-que-eu-fiz-no-Canva-e1631206678162-pcvbl6lcx3mwo97eg0q4yn4zchcokysbd7aoauowe8.png" width="750" alt="Code"></a></p>
+<p align="center"><a href="https://codejr.com.br/" target="_blank"><img src="https://media.licdn.com/dms/image/v2/C4D0BAQGilICPiM6Bkw/company-logo_200_200/company-logo_200_200/0/1630557110913/code_empresa_jnior_logo?e=2147483647&v=beta&t=f17s92wFR-yqeZqt-X9L7QRwCLk4kkjw2OTW4tpa_uI" width="250" alt="Code"></a></p>
 
 <h1 align="center">
     Desafio Laravel 2026.2
