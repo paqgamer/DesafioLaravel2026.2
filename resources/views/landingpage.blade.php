@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 
 <head>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600&display=swap"
@@ -15,37 +16,8 @@
 
 <body>
     {{-- Vou separar a navbar ainda --}}
-    <header class="navbar">
 
-        <a class="logo" href="/">
-            <img src="{{ asset('image/alogodesafio.png') }}" alt="De$afio" height="40">
-        </a>
-
-        <form action="/" method="GET" class="search">
-            <select class="category" name="category_id">
-                <option value="">Todas as Categorias</option>
-                @foreach ($categorias as $categoria)
-                    <option value="{{ $categoria->id }}"
-                        {{ request('category_id') == $categoria->id ? 'selected' : '' }}>
-                        {{ $categoria->name }}
-                    </option>
-                @endforeach
-            </select>
-
-            <input type="text" name="search" placeholder="Buscar produtos..." value="{{ request('search') }}">
-
-            <button type="submit" style="display: none;">Buscar</button>
-        </form>
-
-        <a class="login" href="/login">
-            Login
-        </a>
-
-        <button class="cart-button-landing">
-            🛒 Carrinho
-        </button>
-
-    </header>
+    <x-navbar :categorias="$categorias" />
 
     {{-- ARRUMAR ISSO AQUI --}}
     <section class="hero">

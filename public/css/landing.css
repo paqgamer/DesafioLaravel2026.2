@@ -2,12 +2,13 @@
     box-sizing: border-box;
     font-family: "Inter", sans-serif;
 }
-/* gostei da fonte inter, usei no figma e é legível */
+
 body {
     margin: 0;
     background: #f5f6fa;
     color: #111;
 }
+
 .category-badge {
     font-size: 11px;
     font-weight: 600;
@@ -18,58 +19,11 @@ body {
     display: block;
 }
 
-.navbar {
-    height: 80px;
-    background: #111a2c;
-    color: white;
-    display: flex;
-    align-items: center;
-    padding: 0px 10px;
-    gap: 20px;
-    border-bottom: 1px solid #65718a;
-}
-
-/* .logo span {
-            color: #d8b84d;
-        } */
-
-.search {
-    flex: 1;
-    display: flex;
-    border-radius: 35px;
-    height: 25px;
-}
-
-.category {
-    background: white;
-    border: none;
-    border-right: 1px solid #aaa;
-    font-size: 12px;
-}
-
-.search input {
-    flex: 1;
-    border: none;
-}
-
 button {
     border: none;
     cursor: pointer;
 }
 
-.login {
-    background: #2563eb;
-    color: white;
-    border-radius: 15px;
-    padding: 5px 14px;
-}
-
-.cart-button-landing {
-    background: #16c784;
-    color: white;
-    border-radius: 15px;
-    padding: 5px 14px;
-}
 
 .hero {
     background: #111a2c;
@@ -102,17 +56,16 @@ button {
     color: #e4bd43;
 }
 
+
 .products {
     display: grid;
-    /* essa desgraça tava quebrada ocupando a pagina toda pq eu fui burro de usar autofit */
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     gap: 15px;
     padding: 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
-/* mudei a porra toda 
-peguei inspiracao no blog do trainee */
+
 .card {
     background: white;
     border: 1px solid #e0e0e0;
@@ -137,6 +90,7 @@ peguei inspiracao no blog do trainee */
     flex-direction: column;
     flex: 1;
 }
+
 .card img {
     width: 100%;
     aspect-ratio: 1 / 1;
@@ -148,6 +102,7 @@ peguei inspiracao no blog do trainee */
     color: #222;
     margin-bottom: 10px;
     line-height: 1.4;
+
     display: -webkit-box;
     -webkit-line-clamp: 2;
     line-clamp: 2;
@@ -161,6 +116,7 @@ peguei inspiracao no blog do trainee */
     font-weight: 600;
     color: #ef4444;
 }
+
 .price-row {
     margin-top: auto;
     margin-bottom: 10px;
