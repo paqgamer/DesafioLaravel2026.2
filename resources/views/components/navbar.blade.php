@@ -4,15 +4,14 @@
 <header class="navbar">
 
     <a class="logo" href="/">
-        <img src="{{ asset('image/alogodesafio.png') }}" alt="De$afio" height="40">
+        <img src="{{ asset('image/alogodesafio.png') }}" alt="De$afio" height="100%">
     </a>
 
     <form action="/" method="GET" class="search">
         <select class="category" name="category_id">
             <option value="">Todas as Categorias</option>
             @foreach ($categorias as $categoria)
-                <option value="{{ $categoria->id }}"
-                    {{ request('category_id') == $categoria->id ? 'selected' : '' }}>
+                <option value="{{ $categoria->id }}" {{ request('category_id') == $categoria->id ? 'selected' : '' }}>
                     {{ $categoria->name }}
                 </option>
             @endforeach
@@ -26,13 +25,17 @@
             </span>
         </button>
     </form> <a class="login" href="/login">
-        Login
+        <span class="material-symbols-outlined" id="dashicon">
+            dashboard
+        </span>
+        </span> <span class="dashboard-text">Dashboard</span>
     </a>
 
     <a class="cart-button-landing">
-    <span class="material-symbols-outlined">
-shopping_cart
-</span>    Carrinho
+        <span class="material-symbols-outlined">
+            shopping_cart
+        </span> <span class="cart-text">Carrinho</span>
+
     </a>
 
 </header>

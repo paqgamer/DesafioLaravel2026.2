@@ -16,6 +16,9 @@
     box-sizing: border-box;
     overflow: hidden;
 }
+.logo{
+    height: 40px;
+}
 
 .search {
     flex: 1 1 auto;
@@ -39,7 +42,8 @@
     padding: 0 8px;
     field-sizing: content;
 }
-
+/* aparentemente esse field-sizing content é algo recente, ou  pelo  menos  não-antigo no css, então nao funciona
+em qualquer navegador, se precisar eu faço um JS para ajustar isso (me inspirei no da amazon) */
 
 
 .login {
@@ -59,9 +63,42 @@
     flex-direction: row;
     align-items: center;
 }
-
-@media (max-width: 600px){
-    .cart-button-landing{
+#dashicon{
+    display: none;
+}
+/* sinceramente parece responsivo o suficiente, mas  posso ajustar mais no final do projeto se sobrar  tempo */
+@media (max-width: 700px){
+   .cart-button-landing{
+    font-size: 12px;
+   }
+   .login{
+    font-size: 12px;
+   }
+   .material-symbols-outlined{
+    font-size: 12px;
+   }
+   .category{
+    font-size: 10px;
+   }
+   .logo{
+    height: 30px;
+   }
+}
+/* ta uma bosta,  mas o php me consome mais tempo que eu pensava, entao  o  css fica pra  depois */
+@media (max-width: 550px) {
+     .cart-text {
         display: none;
+    }
+    .dashboard-text{
+        display: none;
+    }
+    #dashicon{
+        display: flex;
+    }
+    .logo{
+        width: 20%;
+    }
+    .category{
+        display: grid;
     }
 }

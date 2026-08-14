@@ -15,11 +15,12 @@
 </head>
 
 <body>
-    {{-- Vou separar a navbar ainda --}}
-
+<!-- finalmente já separei a navbar -->
     <x-navbar :categorias="$categorias" />
 
     {{-- ARRUMAR ISSO AQUI --}}
+
+    <!-- acho que  arrumei -->
     <section class="hero">
         <div class="banner">
             <h2>Os melhores Produtos Aqui no</h2>
@@ -32,9 +33,9 @@
 
     <section class="products">
         @foreach ($produtos as $produto)
-            <div class="card">
+        <a href="{{ route('products.show', $produto->id) }}" class="card-link">
+        <div class="card">
                 <img src="{{ asset($produto->image_url) }}" alt="Foto de {{ $produto->name }}"> 
-                {{-- enfiei a categoria no card pq fica mais inuitivo --}}
                 <div class="card-content">
                     <span class="category-badge">
                         {{ $produto->category->name ?? 'Sem categoria' }}
@@ -50,6 +51,7 @@
                     </div>
                 </div>
             </div>
+        </a>
         @endforeach
     </section>
 
