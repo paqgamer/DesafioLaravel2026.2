@@ -6,9 +6,8 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
+
     public function up(): void
     {
         Schema::create('order_items', function (Blueprint $table) {
@@ -18,15 +17,14 @@ return new class extends Migration
 
             //chaves estrangeiras
             $table->foreignId('order_id')->constrained('orders')->onDelete('cascade');
-            $table->foreignId('product_id')->constrained('products')->onDelete('cascade');
-
+            $table->foreignId('product_id')->constrained('products')->onDelete('restrict');
+                // deletar  produto que ja foi comprado daria uma  merda  grande, nao sei como vou  resolver
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+ 
+    
     public function down(): void
     {
         Schema::dropIfExists('order_items');

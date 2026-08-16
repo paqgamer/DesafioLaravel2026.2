@@ -18,11 +18,12 @@ class ProductFactory extends Factory
     public function definition(): array
 {
     $randomimagensprodutos = [
-            'image/produtos/fone.jpg',
-            'image/produtos/monitor.webp',
-            'image/produtos/mouse.jpg',
-            'image/produtos/teclado.jpg',
-            'image/produtos/computador.jpg',
+            'products/fone.jpg',
+            'products/monitor.webp',
+            'products/mouse.jpg',
+            'products/teclado.jpg',
+            'products/computador.jpg',
+// assim fica certo o lugar das imagens
 
             ];
     return [

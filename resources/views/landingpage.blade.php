@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
+<!-- maldito teclado dando  espaço duplo -->
 <head>
     
     <meta charset="UTF-8">
@@ -35,7 +35,9 @@
         @foreach ($produtos as $produto)
         <a href="{{ route('products.show', $produto->id) }}" class="card-link">
         <div class="card">
-                <img src="{{ asset($produto->image_url) }}" alt="Foto de {{ $produto->name }}"> 
+            <!-- ajustando as imagens  para o storage, eu devia ter visto os trainamentos, ficar dependendo de documentação  é foda
+             ainda mais  eu que  vejo ttudo  na ordem errada,  só arrependimento -->
+                <img src="{{ asset('storage/' . $produto->image_url)}}" alt="Foto de {{ $produto->name }}"> 
                 <div class="card-content">
                     <span class="category-badge">
                         {{ $produto->category->name ?? 'Sem categoria' }}

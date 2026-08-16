@@ -23,7 +23,7 @@
             <div class="product-top-section">
 
                 <div class="product-image-container">
-                    <img src="{{ asset($produto->image_url) }}" alt="Foto de {{ $produto->name }}">
+                    <img src="{{ asset('storage/' . $produto->image_url) }}" alt="Foto de {{ $produto->name }}">
                 </div>
 
                 <div class="product-info-container">

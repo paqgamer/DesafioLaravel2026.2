@@ -16,6 +16,9 @@ export default {
             },
         },
     },
-
+corePlugins: {
+    preflight: false,
+},
+// maldito preflight me  custou  3 horas, eu poderia  ter usado  mais tailwind nessa merdad de site.
     plugins: [forms],
 };
