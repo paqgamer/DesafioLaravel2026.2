@@ -77,7 +77,7 @@
     font-weight: 600;
     color: #374151;
 }
-/* tudo junto, padronizado */
+
 .form-group input,
 .form-group select,
 .form-group textarea {
@@ -145,7 +145,7 @@
     background-color: #15803d;
 }
 /* obotao que cancela  imagem pra nao ter que fechar o modal inteiro */
-#edit_image_clear {
+.image-preview-clear-btn {
     display: none;
     position: absolute;
     top: -6px;
@@ -157,7 +157,7 @@
     border: none;
     cursor: pointer;
 }
-#edit_image_preview {
+.image-preview-img {
     max-width: 120px;
     display: block;
     margin-bottom: 8px;

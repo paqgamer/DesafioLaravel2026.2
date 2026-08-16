@@ -38,8 +38,8 @@
                 <div class="form-group">
                     <label for="edit_image">Imagem do Produto</label>
                     <div class="image-preview-wrapper" style="position: relative; display: inline-block;">
-                        <img id="edit_image_preview" src="" alt="Imagem atual" >
-                        <button type="button" id="edit_image_clear" class="btn-clear-image" title="Cancelar nova imagem" >&times;</button>
+                        <img id="edit_image_preview" class="image-preview-img" src="" alt="Imagem atual">
+                        <button type="button" id="edit_image_clear" class="image-preview-clear-btn" title="Cancelar nova imagem">&times;</button>
                     </div>
                     <input type="file" id="edit_image" name="image" accept="image/png, image/jpeg, image/webp">
                     <small>Deixe em branco pra manter a imagem atual.</small>

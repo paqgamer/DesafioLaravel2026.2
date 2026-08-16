@@ -26,10 +26,10 @@
                 <p>Cadastre, edite ou remova produtos do catálogo.</p>
             </div>
 
-            <a href="{{ route('admin.products.create') }}" class="btn-create">
+            <button type="button" class="btn-create" onclick="openCreateModal()">
                 <span class="material-symbols-outlined">add</span>
                 Novo Produto
-            </a>
+            </button>
         </div>
 
         @if (session('success'))
@@ -38,13 +38,14 @@
                 {{ session('success') }}
             </div>
         @endif
-        <!-- em teoria não é pra dar erro -->
+
         @if (session('error'))
             <div class="alert-error">
                 <span class="material-symbols-outlined">error</span>
                 {{ session('error') }}
             </div>
         @endif
+
         <div class="table-card">
             <table class="products-table">
                 <thead>
@@ -114,6 +115,7 @@
 
     </main>
     @include('admin.products.edit')
+    @include('admin.products.create')
 </body>
 <script src="{{ asset('js/admproducts.js') }}"></script>
 

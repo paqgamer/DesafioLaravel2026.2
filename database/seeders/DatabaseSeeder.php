@@ -11,6 +11,15 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+// usuario  admin pra  testes, cansei de abrir o adminer toda hora
+User::factory()->create([
+    'name' => 'admdosite',
+    'email' => 'bagre@admin.com',
+    'password' => bcrypt('123123'),
+    'cpf' => '00000000000',
+    'is_admin' => true,
+]);
+
         // dez candango pra fingir que tem gente que usar meu site
     $users = User::factory(10)->create();
 
