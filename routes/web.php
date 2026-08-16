@@ -6,6 +6,7 @@ use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\ProductController as PublicProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\Admin\EmailController as AdminEmailController;
 
 Route::middleware(['auth'])->group(function () {
 
@@ -25,9 +26,16 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
     // crud foda
     Route::prefix('admin')->name('admin.')->group(function () {
-        
+
         Route::resource('products', AdminProductController::class);
-        
+
+    });
+
+    Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
+// que desgraça, era melhor  abrir  o  gmail e enviar.
+        Route::get('/emails', [AdminEmailController::class, 'create'])->name('emails.create');
+        Route::post('/emails', [AdminEmailController::class, 'send'])->name('emails.send');
+
     });
 
 });
