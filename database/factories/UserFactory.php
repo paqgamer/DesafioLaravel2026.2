@@ -7,21 +7,13 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
-/**
- * @extends Factory<User>
- */
+
 class UserFactory extends Factory
 {
-    /**
-     * The current password being used by the factory.
-     */
+
     protected static ?string $password;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
+
     public function definition(): array
     {
         return [
@@ -33,14 +25,20 @@ class UserFactory extends Factory
             'remember_token' => Str::random(10),
             'cpf' => fake()->unique()->numerify('###########'), //vou ser preso por fazer gerador de cfp
             'phone' => fake()->phoneNumber(),
+            'birth_date' => fake()->dateTimeBetween('-70 years', '-18 years')->format('Y-m-d'),
             'is_admin' => false,
+            'saldo' => fake()->randomFloat(2, 0, 500),
+            'cep' => fake()->numerify('#####-###'),
+            'street' => fake()->streetName(),
+            'number' => (string) fake()->numberBetween(1, 2000),
+            'neighborhood' => fake()->words(2, true),
+            'city' => fake()->city(),
+            'state' => fake()->randomElement(['SP', 'RJ', 'MG', 'ES', 'BA', 'PR', 'SC', 'RS', 'GO', 'DF']), //depois faço a merda da API cep
+            'complement' => fake()->optional()->secondaryAddress(),
         ];
     }
 
-    /**
-     * Indicate that the model's email address should be unverified.
-     */
-    
+ 
     public function unverified(): static
     {
         return $this->state(fn (array $attributes) => [

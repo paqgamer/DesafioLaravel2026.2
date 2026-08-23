@@ -7,6 +7,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController as PublicProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\EmailController as AdminEmailController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
+use App\Http\Controllers\CepController;
+
+
+// essa  bosta precisa  funcionar na tela de cadastro então nao   pode estar no  auth
+Route::get('/api/cep/{cep}', [CepController::class, 'show'])->name('api.cep.show');
 
 Route::middleware(['auth'])->group(function () {
 
@@ -31,10 +37,13 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
     });
 
+    // essas aqui são só pra admin de verdade, não pra "dono do produto"
     Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
-// que desgraça, era melhor  abrir  o  gmail e enviar.
+
         Route::get('/emails', [AdminEmailController::class, 'create'])->name('emails.create');
         Route::post('/emails', [AdminEmailController::class, 'send'])->name('emails.send');
+
+        Route::resource('users', AdminUserController::class)->only(['index', 'update', 'destroy']);
 
     });
 

@@ -6,15 +6,15 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+    // 
+    // Eu sou o SR. laravel, vou encher de comentários explicativos que não ajudam  em nada.
+    // 
     public function up(): void
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email')->unique(); // impedir email duplicado
+            $table->string('email')->unique(); 
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
 
@@ -24,6 +24,8 @@ return new class extends Migration
             $table->date('birth_date')->nullable();
             $table->string('photo')->nullable();
             $table->boolean('is_admin')->default(false);
+            // eu tinha esquecido a desgraça  do saldo  no banco de dados, que merda,
+            $table->decimal('saldo', 10, 2)->default(0);
             $table->string('cep')->nullable();
             $table->string('street')->nullable();
             $table->string('number')->nullable();
@@ -50,9 +52,7 @@ return new class extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
+
     public function down(): void
     {
         Schema::dropIfExists('users');
