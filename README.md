@@ -7,17 +7,78 @@
 ## Sobre o desafio
 
 O desafio tem como intuito treinar os novos membros da Code Jr., afim de familiarizarem melhor com o framework Laravel desenvolvendo um e-commerce de produtos eletrônicos, com as funcionalidades definidas no documento de requisitos disponibilizado.
+## Como executar o projeto (Laravel Sail)
 
-## Como executar o projeto
+### Pré-requisitos
+- Docker -  instala e executa, no  meu é systemctl start docker
+- Git  - obviamente
 
-Para executar o projeto você deve seguir os seguintes passos:
+### Passo a passo
 
-- Copie o arquivo `.env.example` e renomeie sua cópia para `.env`
-- Crie um banco 'MySql' com o nome de `desafiolaravel2026.2`
-- execute o comando: ```composer install```
-- execute o comando: ```php artisan key:generate``` 
-- execute o comando: ```npm install```
-- execute o comando: ```npm run build```
-- execute o comando: ```php artisan migrate```
-- execute o comando: ```npm run dev```
-- execute o comando: ```php artisan serve```
+1. Clona esse repo e  entre na pasta::
+```bash
+   git clone <https://github.com/paqgamer/DesafioLaravel2026.2>
+   cd <DesafioLaravel2026.2>
+```
+
+2. Copie o arquivo `.env.example` e renomeie sua cópia para `.env`:
+```bash
+   cp .env.example .env
+```
+
+3. **Se for a primeira vez rodando o projeto** (não vai ter  a pasta `vendor/`), instala as paradas do php  para que`sail` fique disponível depois desse passo:
+```bash
+   docker run --rm \
+       -u "$(id -u):$(id -g)" \
+       -v "$(pwd):/var/www/html" \
+       -w /var/www/html \
+       laravelsail/php84-composer:latest \
+       composer install --ignore-platform-reqs
+```
+
+4. No `.env`, tem  que estar nesse modelo pra comunicar com  o  banco de dados:
+```
+   DB_CONNECTION=mysql
+   DB_HOST=mysql
+   DB_PORT=3306
+   DB_DATABASE=laravel
+   DB_USERNAME=sail
+   DB_PASSWORD=password
+```
+Ajuste  portas como necessário pra rodar em cada máquina, talvezs seu computador já estejausando  alguma delas
+
+5. Pra rodar os containers:
+```bash
+   ./vendor/bin/sail up -d
+```
+
+ Eu recomendo fortemente cirar um alias mo arquivo  do shell, no meu caso  o zshrc, coloque "alias sail='vendor/bin/sail'" e  aí dá pra usar apenas o  comando sail como se fosse  o do php
+
+6. gerar a chave:
+```bash
+   sail artisan key:generate
+```
+
+7. Usar a migration  e semear o banco:
+```bash
+   sail artisan migrate --seed
+```
+
+8. Pra funcionar as coisas do storage, o navegador  poder acessar lá:
+```bash
+   sail artisan storage:link
+```
+
+9. Coisa do vite(eu acho):
+```bash
+   sail npm install
+   sail npm run build
+```
+   Depois toda vez que  executar  tenha um terminal com  "npm  run dev" aberto.
+
+10. acesse  "localhost"  no navegador, simples  assim.
+
+### Observações
+
+depois de semear o banco, logue com admin padrão "bagre@admin.com" senha: 123123. Depois  mude  isso se quiser.
+Troquei o  phpmyadmin pelo adminer, muito melhor
