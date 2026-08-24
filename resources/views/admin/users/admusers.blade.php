@@ -24,8 +24,13 @@
         <div class="admin-header">
             <div>
                 <h1>Gerenciamento de Usuários</h1>
-                <p>Visualize e edite os dados dos usuários cadastrados.</p>
+                <p>Visualize, crie e edite os dados dos usuários cadastrados.</p>
             </div>
+
+            <button type="button" class="btn-create" onclick="openCreateModal()">
+                <span class="material-symbols-outlined">add</span>
+                Novo Usuário
+            </button>
         </div>
 
         @if (session('success'))
@@ -113,7 +118,11 @@
 
     </main>
     @include('admin.users.edit')
+    @include('admin.users.create')
 </body>
+<script>
+    window.currentUserId = {{ auth()->id() }};
+</script>
 <script src="{{ asset('js/admusers.js') }}"></script>
 
 </html>

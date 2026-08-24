@@ -98,6 +98,16 @@
                     <input type="text" id="edit_complement" name="complement">
                 </div>
 
+                <hr>
+
+                <div class="form-group" style="flex-direction: row; align-items: center; gap: 8px;">
+                    <input type="checkbox" id="edit_is_admin" name="is_admin" value="1" style="width: auto;">
+                    <label for="edit_is_admin" style="margin: 0;">Usuário administrador</label>
+                </div>
+                <small id="edit_is_admin_hint" style="display: none; color: #6b7280;">
+                    Não, você nao vai se rebaixar, mantenha a cabeça firme  amigo, se você é um admin é porque você mereceu, se precisar de  algo me chama, mas continue sendo um bom admin...
+                </small>
+
             </div>
 
             <div class="modal-footer">

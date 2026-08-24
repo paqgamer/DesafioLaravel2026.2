@@ -5,6 +5,7 @@
 // JavaScript порой бывает довольно суров.
 // JavaScriptは、時に少し厄介なことがあります。
 
+
 function openEditModal(usuario) {
     const form = document.getElementById("editUserForm");
     form.action = `/admin/users/${usuario.id}`;
@@ -23,6 +24,14 @@ function openEditModal(usuario) {
     document.getElementById("edit_city").value = usuario.city || "";
     document.getElementById("edit_complement").value = usuario.complement || "";
 
+    const isAdminCheckbox = document.getElementById("edit_is_admin");
+    const isAdminHint = document.getElementById("edit_is_admin_hint");
+    const isSelf = usuario.id === window.currentUserId;
+
+    isAdminCheckbox.checked = !!usuario.is_admin;
+    isAdminCheckbox.dataset.self = isSelf ? "1" : "0";
+    isAdminHint.style.display = isSelf ? "block" : "none";
+
     const preview = document.getElementById("edit_photo_preview");
     const originalPhotoUrl = usuario.photo ? `/storage/${usuario.photo}` : "";
     preview.src = originalPhotoUrl;
@@ -39,65 +48,109 @@ function closeEditModal() {
     document.getElementById("editUserModal").style.display = "none";
 }
 
+function openCreateModal() {
+    document.getElementById("createUserForm").reset();
+
+    const preview = document.getElementById("create_photo_preview");
+    preview.src = "";
+    preview.style.display = "none";
+    document.getElementById("create_photo_clear").style.display = "none";
+
+    document.getElementById("createUserModal").style.display = "flex";
+}
+
+function closeCreateModal() {
+    document.getElementById("createUserModal").style.display = "none";
+}
+
 window.onclick = function (event) {
-    const modal = document.getElementById("editUserModal");
-    if (event.target === modal) {
+    if (event.target === document.getElementById("editUserModal")) {
         closeEditModal();
+    }
+    if (event.target === document.getElementById("createUserModal")) {
+        closeCreateModal();
     }
 };
 
 
-document.getElementById("edit_photo").addEventListener("change", function (event) {
-    const preview = document.getElementById("edit_photo_preview");
-    const clearBtn = document.getElementById("edit_photo_clear");
-    const file = event.target.files[0];
+function setupImagePreview(inputId, previewId, clearBtnId, getOriginalUrl) {
+    const input = document.getElementById(inputId);
+    const preview = document.getElementById(previewId);
+    const clearBtn = document.getElementById(clearBtnId);
 
-    if (file) {
-        preview.src = URL.createObjectURL(file);
-        preview.style.display = "block";
-        clearBtn.style.display = "block";
-    } else {
-        const original = preview.dataset.original || "";
+    input.addEventListener("change", function (event) {
+        const file = event.target.files[0];
+
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+            clearBtn.style.display = "block";
+        } else {
+            const original = getOriginalUrl();
+            preview.src = original;
+            preview.style.display = original ? "block" : "none";
+            clearBtn.style.display = "none";
+        }
+    });
+
+    clearBtn.addEventListener("click", function () {
+        input.value = "";
+        const original = getOriginalUrl();
         preview.src = original;
         preview.style.display = original ? "block" : "none";
-        clearBtn.style.display = "none";
+        this.style.display = "none";
+    });
+}
+
+
+function setupCepAutofill(prefix) {
+    document.getElementById(`${prefix}cep`).addEventListener("input", function (event) {
+        const cepLimpo = event.target.value.replace(/\D/g, "");
+
+        if (cepLimpo.length !== 8) {
+            return;
+        }
+
+        fetch(`/api/cep/${cepLimpo}`)
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.erro) {
+                    alert(data.mensagem || "CEP não encontrado.");
+                    return;
+                }
+
+                document.getElementById(`${prefix}street`).value = data.logradouro || "";
+                document.getElementById(`${prefix}neighborhood`).value = data.bairro || "";
+                document.getElementById(`${prefix}city`).value = data.localidade || "";
+                document.getElementById(`${prefix}state`).value = data.uf || "";
+
+            })
+            .catch(() => {
+                alert("Não foi possível consultar o CEP agora. Tente novamente.");
+            });
+    });
+}
+
+setupImagePreview(
+    "edit_photo",
+    "edit_photo_preview",
+    "edit_photo_clear",
+    () => document.getElementById("edit_photo_preview").dataset.original || ""
+);
+
+setupImagePreview(
+    "create_photo",
+    "create_photo_preview",
+    "create_photo_clear",
+    () => "" 
+);
+
+setupCepAutofill("edit_");
+setupCepAutofill("create_");
+
+
+document.getElementById("edit_is_admin").addEventListener("change", function () {
+    if (this.dataset.self === "1" && ! this.checked) {
+        this.checked = true;
     }
-});
-
-document.getElementById("edit_photo_clear").addEventListener("click", function () {
-    const input = document.getElementById("edit_photo");
-    const preview = document.getElementById("edit_photo_preview");
-    const original = preview.dataset.original || "";
-
-    input.value = "";
-    preview.src = original;
-    preview.style.display = original ? "block" : "none";
-    this.style.display = "none";
-});
-
-
-document.getElementById("edit_cep").addEventListener("input", function (event) {
-    const cepLimpo = event.target.value.replace(/\D/g, "");
-
-    if (cepLimpo.length !== 8) {
-        return;
-    }
-
-    fetch(`/api/cep/${cepLimpo}`)
-        .then((response) => response.json())
-        .then((data) => {
-            if (data.erro) {
-                alert(data.mensagem || "CEP não encontrado.");
-                return;
-            }
-
-            document.getElementById("edit_street").value = data.logradouro || "";
-            document.getElementById("edit_neighborhood").value = data.bairro || "";
-            document.getElementById("edit_city").value = data.localidade || "";
-            document.getElementById("edit_state").value = data.uf || "";
-
-        })
-        .catch(() => {
-            alert("O cep não pode ser consultado, favor aguarde ou  preencha tudo manualmente.");
-        });
 });
