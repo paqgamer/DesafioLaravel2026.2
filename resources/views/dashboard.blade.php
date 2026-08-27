@@ -36,7 +36,26 @@
                         Gerenciar Produtos
                     </a>
                 </div>
+                <div class="dashboard-card">
+                    <div>
+                        <div class="card-header-icon">
+                            <div class="icon-wrapper blue">
+                            <!-- colocar iconezinho aviadado para  ficar  melhor -->
+                        </div>
+                            <div class="card-title-group">
+                                <h3>Tabela de Usuários</h3>
+                                <p>Gestão de Usuarios</p>
+                            </div>
+                        </div>
+                        <p class="card-body-text">
+                            Gerenciar os Usuarios do site, alterar, criar e remover.
+                        </p>
+                    </div>
 
+                    <a href="{{ route('admin.users.index') }}" class="card-action-btn blue">
+                        Gerenciar Usuários
+                    </a>
+                </div>
                 <div class="dashboard-card">
                     <div>
                         <div class="card-header-icon">

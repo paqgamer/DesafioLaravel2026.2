@@ -97,13 +97,18 @@
 
 .card-action-btn {
     display: inline-flex;
+    /* vai  ficar  inline-flex  mesmo, custe o que custar */
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+    max-width: 100%;
     width: 100%;
     padding: 0.625rem 1.25rem;
+    /* né possível que ta vazando isso */
     border-radius: 8px;
     font-size: 0.875rem;
+    box-sizing: border-box; 
+    /* border-box salvou */
     font-weight: 600;
     text-decoration: none;
     transition: background-color 0.2s ease;
