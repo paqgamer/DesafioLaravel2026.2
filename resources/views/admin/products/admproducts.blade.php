@@ -25,11 +25,16 @@
                 <h1>Gerenciamento de Produtos</h1>
                 <p>Cadastre, edite ou remova produtos do catálogo.</p>
             </div>
-
+            <div class="header-actions">
+            <a href="/vendas" class="btn-report">
+                <span class="material-symbols-outlined">receipt_long</span>
+               Relatório de Vendas
+            </a>
             <button type="button" class="btn-create" onclick="openCreateModal()">
                 <span class="material-symbols-outlined">add</span>
                 Novo Produto
             </button>
+            </div>
         </div>
 
         @if (session('success'))
@@ -128,8 +133,8 @@
 
 @if (auth()->user()->is_admin)
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
-                                <!-- eu ia rodar no NPM, mas a clouflare fez a boa -->
-                                <!-- valeu cloudflare por carregar a internet   inteira nas costas -->
+    <!-- eu ia rodar no NPM, mas a clouflare fez a boa -->
+    <!-- valeu cloudflare por carregar a internet   inteira nas costas -->
     <script>
         new Chart(document.getElementById('graficoProdutosMes'), {
             type: 'bar',

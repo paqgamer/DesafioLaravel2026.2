@@ -124,5 +124,6 @@
     window.currentUserId = {{ auth()->id() }};
 </script>
 <script src="{{ asset('js/admusers.js') }}"></script>
+<x-footer />
 
 </html>

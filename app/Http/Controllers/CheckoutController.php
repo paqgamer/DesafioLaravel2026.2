@@ -14,7 +14,6 @@ class CheckoutController extends Controller
 {
     public function __construct()
     {
-        // falta  pegar o token, vou  ver se libera
         MercadoPagoConfig::setAccessToken(config('services.mercadopago.access_token'));
 
         if (! app()->environment('production')) {
@@ -22,8 +21,6 @@ class CheckoutController extends Controller
         }
     }
 
-
-    // da confirmacao e  referencia
     public function redirect(Request $request)
     {
         $carrinho = Order::where('user_id', $request->user()->id)
@@ -50,7 +47,7 @@ class CheckoutController extends Controller
                     'name' => $request->user()->name,
                     'email' => $request->user()->email,
                 ],
-                //identifica o pedido pela sdk  direto no servidor do MP\
+               
                 'external_reference' => (string) $carrinho->id,
                 'back_urls' => [
                     'success' => route('checkout.success'),
@@ -69,7 +66,6 @@ class CheckoutController extends Controller
             return back()->with('error', 'Não foi possível iniciar o pagamento. Tente novamente.');
         }
 
-// test  para producao
         $initPoint = app()->environment('production')
             ? $preference->init_point
             : $preference->sandbox_init_point;
@@ -94,8 +90,7 @@ class CheckoutController extends Controller
             ->with('error', 'Pagamento não concluído. Seu carrinho continua salvo, tente novamente.');
     }
 
-  
-    
+   
     public function webhook(Request $request)
     {
         $paymentId = $request->input('data.id') ?? $request->query('id');
@@ -118,8 +113,8 @@ class CheckoutController extends Controller
 
         $carrinho = Order::with('items.product')->find($payment->external_reference);
 
-
-        // webhhok repedido
+       
+        // xenofobia com argentino tá  valendo?, pq o bagui repete às vezes?
         if (! $carrinho || $carrinho->status !== 'carrinho') {
             return response()->json(['status' => 'ok'], 200);
         }
@@ -128,7 +123,7 @@ class CheckoutController extends Controller
             $item->product->decrement('stock_quantity', $item->quantity);
         }
 
-        $carrinho->update(['status' => 'pago']);
+        $carrinho->update(['status' => 'pago', 'paid_at' => now()]);
 
         return response()->json(['status' => 'ok'], 200);
     }

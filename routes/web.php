@@ -11,17 +11,16 @@ use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\CepController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\SaleController;
 
-// tomara que  funcione, documentação ruim da desgraça
 Route::post('/webhooks/mercadopago', [CheckoutController::class, 'webhook'])->name('checkout.webhook');
-
 
 Route::get('/api/cep/{cep}', [CepController::class, 'show'])->name('api.cep.show');
 
 Route::middleware(['auth'])->group(function () {
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/produtos/{id}', [PublicProductController::class, 'show'])->name('products.show');
 
 
@@ -33,7 +32,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // Realmente, um carrinho é importante para comprar compras  e vendas no  site de vender comrpas
+
     Route::get('/carrinho', [CartController::class, 'index'])->name('cart.index');
     Route::post('/carrinho/adicionar/{product}', [CartController::class, 'add'])->name('cart.add');
     Route::patch('/carrinho/{item}', [CartController::class, 'updateQuantity'])->name('cart.update');
@@ -44,14 +43,18 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/checkout/falha', [CheckoutController::class, 'failure'])->name('checkout.failure');
     Route::get('/checkout/pendente', [CheckoutController::class, 'pending'])->name('checkout.pending');
 
+    Route::get('/vendas', [SaleController::class, 'index'])->name('sales.index');
+    Route::get('/vendas/relatorio/pdf', [SaleController::class, 'reportPdf'])->name('sales.report.pdf');
+    Route::get('/vendas/relatorio/xlsx', [SaleController::class, 'reportXlsx'])
+        ->middleware('admin')
+        ->name('sales.report.xlsx');
 
-    // crud foda
+
     Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('products', AdminProductController::class);
 
     });
-
 
     Route::middleware(['admin'])->prefix('admin')->name('admin.')->group(function () {
 
@@ -64,4 +67,4 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

@@ -1,15 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <!-- tive que refazer essa bagaça, parcialmente -->
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link
-    
         href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
         rel="stylesheet">
-        <!-- O  link da fonte sempre vai errado -->
+    <!-- O  link da fonte sempre vai errado -->
     <title>{{ $produto->name }} | De$af.io</title>
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('image/favicon.svg') }}">
+
     <link rel="stylesheet" href="{{ asset('css/product.css') }}">
 </head>
 
@@ -57,9 +60,10 @@
                     @if ($produto->stock_quantity > 0)
                         <form action="{{ route('cart.add', $produto->id) }}" method="POST" class="product-actions">
                             @csrf
-                            <input type="number" name="quantity" value="1" min="1"
-                                max="{{ $produto->stock_quantity }}" style="width: 60px;">
-                            <button type="button" class="btn-buy-now" disabled title="Tá quase, a  compravai funcinoar ainda">
+                            <input type="number" name="quantity" value="1" min="1" max="{{ $produto->stock_quantity }}"
+                                style="width: 60px;">
+                            <button type="button" class="btn-buy-now" disabled
+                                title="Tá quase, a  compravai funcinoar ainda">
                                 Comprar Agora
                             </button>
                             <button type="submit" class="btn-add-cart">
@@ -67,7 +71,7 @@
                             </button>
                         </form>
                     @else
-                        <p class="empty-state">Produto fora de estoque no momento.</p> 
+                        <p class="empty-state">Produto fora de estoque no momento.</p>
                         <!-- faz o L -->
                     @endif
                 </div>

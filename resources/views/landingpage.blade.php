@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('image/favicon.svg') }}">
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
     <title>De$af.io | O Futuro da Tecnologia</title>
     <link rel="stylesheet" href="{{ asset('css/landing.css') }}">
@@ -26,7 +28,7 @@
     <section class="presentation">
         <div class="presentation-content">
             <h2>Por que escolher a De$af.io?</h2>
-            <p>Esse aqui é o melhor jeito de se comprar um eletrônico. Você não acredita? Clique no botão abaixo e veja por si só, temos produtos de qualidade exclusiva!!</p>
+            <p>Esse aqui é o melhor jeito de se comprar um eletrônico. Você não acredita?  Role para baixo e veja por si só, temos produtos de qualidade exclusiva!!</p>
         </div>
     </section>
 <!-- redirectzinho maroto -->

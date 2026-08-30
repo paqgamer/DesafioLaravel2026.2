@@ -1,3 +1,5 @@
+    <link rel="icon" type="image/x-icon" href="{{ asset('image/favicon.svg') }}">
+
 <x-app-layout>
     <x-slot name="header">
         <link rel="stylesheet" href="{{ asset('css/dashboard.css') }}">
@@ -81,4 +83,6 @@
 
         </div>
     </div>
+    <x-footer />
+
 </x-app-layout>

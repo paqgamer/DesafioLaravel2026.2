@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
     <title>Meu Carrinho | De$af.io</title>
     <link rel="stylesheet" href="{{ asset('css/navbar.css') }}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('image/favicon.svg') }}">
+
     <link rel="stylesheet" href="{{ asset('css/admproducts.css') }}">
 </head>
 
@@ -105,7 +107,6 @@
         @endif
 
     </main>
-
 </body>
-
+<x-footer />
 </html>
