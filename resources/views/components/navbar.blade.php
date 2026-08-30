@@ -31,7 +31,7 @@
         </span> <span class="dashboard-text">Dashboard</span>
     </a>
 
-    <a class="cart-button-landing">
+    <a href= 'carrinho' class="cart-button-landing">
         <span class="material-symbols-outlined">
             shopping_cart
         </span> <span class="cart-text">Carrinho</span>

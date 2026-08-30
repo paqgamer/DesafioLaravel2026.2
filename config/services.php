@@ -34,5 +34,10 @@ return [
             'channel' => env('SLACK_BOT_USER_DEFAULT_CHANNEL'),
         ],
     ],
+    'mercadopago' => [
+        'access_token' => env('MERCADOPAGO_ACCESS_TOKEN'),
+    ], 
+    // desgraça,  de  novo, eu coloquei essa merda em uns 3128 arquivos até reparar que era nesse aqui o certo
+    // vou  criar  um framework  que roda tudo num unico arquivo de uns 5GB  só de meme
 
 ];

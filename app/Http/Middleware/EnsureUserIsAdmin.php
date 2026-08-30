@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-
+// eu acho que  vou aposentar essa bomba, se  sobrar  tempo
 class EnsureUserIsAdmin
 {
     public function handle(Request $request, Closure $next): Response

@@ -46,6 +46,13 @@
             </div>
         @endif
 
+        @if (auth()->user()->is_admin)
+            <div class="table-card" style="margin-bottom: 24px;">
+                <h3 style="margin-top: 0;">Produtos Cadastrados por Mês (últimos 12 meses)</h3>
+                <canvas id="graficoProdutosMes" height="80"></canvas>
+            </div>
+        @endif
+
         <div class="table-card">
             <table class="products-table">
                 <thead>
@@ -118,5 +125,36 @@
     @include('admin.products.create')
 </body>
 <script src="{{ asset('js/admproducts.js') }}"></script>
+
+@if (auth()->user()->is_admin)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.5.1/chart.umd.min.js"></script>
+                                <!-- eu ia rodar no NPM, mas a clouflare fez a boa -->
+                                <!-- valeu cloudflare por carregar a internet   inteira nas costas -->
+    <script>
+        new Chart(document.getElementById('graficoProdutosMes'), {
+            type: 'bar',
+            data: {
+                labels: @json($graficoLabels),
+                datasets: [{
+                    label: 'Produtos cadastrados',
+                    data: @json($graficoData),
+                    backgroundColor: '#2563eb',
+                }],
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: false },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: { precision: 0 }, //deixá inteiro mesmo
+                    },
+                },
+            },
+        });
+    </script>
+@endif
 
 </html>

@@ -59,6 +59,7 @@ em qualquer navegador, se precisar eu faço um JS para ajustar isso (me inspirei
     color: white;
     border-radius: 15px;
     padding: 5px 14px;
+    text-decoration: none;
     display: flex;
     flex-direction: row;
     align-items: center;

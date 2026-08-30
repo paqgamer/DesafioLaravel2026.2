@@ -8,6 +8,10 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
 
+// If you are  reading this, you must know that you are a very good  person, and while I was here for 3 hours debugging this controller, you are having  to read 
+// the same file with caring  eyes. Good luck  my  friend, and if you understand all this, your english level is decent. I was myself an english  teacher  for 
+// a very short period of time. If you ever need some lessons on grammar you might  ping me on whatsapp or email
+
 class ProductController extends Controller
 {
    
@@ -23,39 +27,42 @@ class ProductController extends Controller
 
         $categorias = Category::all();
 
-        return view('admin.products.admproducts', compact('produtos', 'categorias'));
+        $graficoLabels = [];
+        $graficoData = [];
+
+        // Eu  acho  que funciona, pra  nao estripar meu sql gerando query com user comum
+        if ($request->user()->is_admin) {
+            $contagemPorMes = Product::selectRaw("DATE_FORMAT(created_at, '%Y-%m') as mes, COUNT(*) as total")
+                ->where('created_at', '>=', now()->subMonths(11)->startOfMonth())
+                ->groupBy('mes')
+                ->pluck('total', 'mes');
+
+            for ($i = 11; $i >= 0; $i--) {
+                $data = now()->subMonths($i);
+                $chave = $data->format('Y-m');
+
+                $graficoLabels[] = $data->format('m/Y');
+                $graficoData[] = (int) ($contagemPorMes[$chave] ?? 0);
+            }
+        }
+
+        return view('admin.products.admproducts', compact('produtos', 'categorias', 'graficoLabels', 'graficoData'));
     }
 
     
     
     public function create()
     {
+        $categorias = Category::all();
 
-    return redirect()->route('admin.products.index');
+        return view('admin.products.create', compact('categorias'));
     }
 
  
     
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'price' => 'required|numeric|min:0',
-            'category_id' => 'required|exists:categories,id',
-            'image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-            'description' => 'nullable|string',
-        ]);
-
-        $validated['image_url'] = $request->file('image')->store('products', 'public');
-        unset($validated['image']);
-
-        $validated['user_id'] = $request->user()->id;
-
-        Product::create($validated);
-
-        return redirect()
-            ->route('admin.products.index')
-            ->with('success', 'Produto criado com sucesso!');
+        //
     }
 
     
@@ -107,8 +114,8 @@ class ProductController extends Controller
             ->with('success', 'Produto atualizado com sucesso!');
     }
 
-
-    private function deleteImageIfUnused(string $imagePath, ?int $exceptId = null): void
+        // vai assim mesmo, nao deletar imagem padrao:
+        private function deleteImageIfUnused(string $imagePath, ?int $exceptId = null): void
     {
         $aindaUsada = Product::where('image_url', $imagePath)
             ->when($exceptId, fn ($q) => $q->where('id', '!=', $exceptId))
@@ -138,6 +145,7 @@ class ProductController extends Controller
                 ->with('error', 'Não é possível excluir este produto: ele já foi vendido e faz parte do histórico de pedidos.');
         }
  
+
         if ($imageUrl) {
             $this->deleteImageIfUnused($imageUrl);
         }

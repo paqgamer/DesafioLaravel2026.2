@@ -9,6 +9,11 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\EmailController as AdminEmailController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\CepController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+
+// tomara que  funcione, documentação ruim da desgraça
+Route::post('/webhooks/mercadopago', [CheckoutController::class, 'webhook'])->name('checkout.webhook');
 
 
 Route::get('/api/cep/{cep}', [CepController::class, 'show'])->name('api.cep.show');
@@ -27,6 +32,17 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    // Realmente, um carrinho é importante para comprar compras  e vendas no  site de vender comrpas
+    Route::get('/carrinho', [CartController::class, 'index'])->name('cart.index');
+    Route::post('/carrinho/adicionar/{product}', [CartController::class, 'add'])->name('cart.add');
+    Route::patch('/carrinho/{item}', [CartController::class, 'updateQuantity'])->name('cart.update');
+    Route::delete('/carrinho/{item}', [CartController::class, 'remove'])->name('cart.remove');
+
+    Route::post('/checkout/redirecionar', [CheckoutController::class, 'redirect'])->name('checkout.redirect');
+    Route::get('/checkout/sucesso', [CheckoutController::class, 'success'])->name('checkout.success');
+    Route::get('/checkout/falha', [CheckoutController::class, 'failure'])->name('checkout.failure');
+    Route::get('/checkout/pendente', [CheckoutController::class, 'pending'])->name('checkout.pending');
 
 
     // crud foda
