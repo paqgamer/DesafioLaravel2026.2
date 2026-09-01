@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfileController;
-
 use App\Http\Controllers\ProductController as PublicProductController;
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
 use App\Http\Controllers\Admin\EmailController as AdminEmailController;
@@ -12,6 +11,7 @@ use App\Http\Controllers\CepController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\SaleController;
+use App\Http\Controllers\PurchaseController;
 
 Route::post('/webhooks/mercadopago', [CheckoutController::class, 'webhook'])->name('checkout.webhook');
 
@@ -49,7 +49,10 @@ Route::middleware(['auth'])->group(function () {
         ->middleware('admin')
         ->name('sales.report.xlsx');
 
+    Route::get('/compras', [PurchaseController::class, 'index'])->name('purchases.index');
+    Route::get('/compras/relatorio/pdf', [PurchaseController::class, 'reportPdf'])->name('purchases.report.pdf');
 
+    // nao é  tão foda  assim
     Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::resource('products', AdminProductController::class);

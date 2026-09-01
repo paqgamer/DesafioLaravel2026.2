@@ -11,21 +11,31 @@ use Illuminate\Database\Seeder;
 class DatabaseSeeder extends Seeder
 {
     public function run(): void
-
-
-    
     {
-        // dez candango pra fingir que tem gente que usar meu site
-    $users = User::factory(10)->create();
+        // mudei pra 50  candango,pra  testar melhot
+        $users = User::factory(50)->create();
 
-// usuario  admin pra  testes, cansei de abrir o adminer toda hora
-User::factory()->create([
-    'name' => 'admdosite',
-    'email' => 'bagre@admin.com',
-    'password' => bcrypt('123123'),
-    'cpf' => '00000000000',
-    'is_admin' => true,
-]);
+        // usuario admin pra testes, cansei de abrir o adminer toda hora
+        // manter  isolado para nao ter produtos vendas etc
+        User::factory()->create([
+            'name' => 'admdosite',
+            'email' => 'bagre@admin.com',
+            'password' => bcrypt('123123'),
+            'cpf' => '00000000001',
+            'is_admin' => true,
+        ]);
+
+        // usuario  comumde teste, entrando no mesmo "grupo" dos outros aleatorios
+        $usuarioComum = User::factory()->create([
+            'name' => 'user',
+            'email' => 'bagre@user.com',
+            'password' => bcrypt('123123'),
+            'cpf' => '00000000002',
+            'is_admin' => false,
+        ]);
+
+        $users->push($usuarioComum);
+
         // Uma porrada de categorias, que no futuro tenho que revisar
         $categories = collect([
             'Computadores',
@@ -55,18 +65,19 @@ User::factory()->create([
         });
 
         // mudei agora de 30 pra 60 produto falso (ficticio, não é falsificado)
-        Product::factory(60)
+        // agora 600
+        Product::factory(600)
             ->recycle($users)
             ->recycle($categories)
             ->create();
 
-        //eu devia ter poensado  nisso antes pra  gerar o relatorio
+        //eu devia ter poensado nisso antes pra gerar o relatorio
         $todosProdutos = Product::all();
 
-        for ($i = 0; $i < 40; $i++) {
+        for ($i = 0; $i < 400; $i++) {
             $comprador = $users->random();
 
-            //na  minha cabeça  faz  sentido,  comprar  de si próprio é  esquizo
+            //na minha cabeça faz sentido, comprar de si próprio é esquizo
             $produtosDisponiveis = $todosProdutos->where('user_id', '!=', $comprador->id);
 
             if ($produtosDisponiveis->isEmpty()) {
@@ -76,8 +87,7 @@ User::factory()->create([
             $quantidadeItens = min(3, $produtosDisponiveis->count());
             $itensDoPedido = $produtosDisponiveis->random($quantidadeItens);
 
-            
-            // normalizaressa  bagaça
+            // normalizar essa bagaça
             if ($quantidadeItens === 1) {
                 $itensDoPedido = collect([$itensDoPedido]);
             }
@@ -86,7 +96,7 @@ User::factory()->create([
                 'user_id' => $comprador->id,
                 'status' => 'pago',
                 'paid_at' => fake()->dateTimeBetween('-11 months', 'now'),
-                'total_amount' => 0, 
+                'total_amount' => 0,
             ]);
 
             $total = 0;
