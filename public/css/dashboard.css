@@ -1,4 +1,10 @@
 /* roda de oração contra o tailwind hoje meia  noite */
+
+
+body{
+    margin: 0;
+    /* fdp me  tomou 2  horas pra  tirar borda branca do footer */
+}
 .dashboard-container {
     padding: 2rem 1rem;
     max-width: 1200px;

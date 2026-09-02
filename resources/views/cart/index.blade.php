@@ -107,6 +107,6 @@
         @endif
 
     </main>
-</body>
 <x-footer />
+</body>
 </html>

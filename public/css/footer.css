@@ -3,7 +3,8 @@
     background: #241434; 
     width: 100%;
     color: #e5e7eb;
-    margin-top: 80px;
+    margin-top: 50vh;
+    /* esse  margintop é  pra garantir que em  paginas  quase vazias não dê  bug do footer desgrudar da borda inferior */
     clip-path: polygon(0 8%, 50% 0, 100% 8%, 100% 100%, 0 100%);
     padding-top: 80px; 
     padding-bottom: 0;
