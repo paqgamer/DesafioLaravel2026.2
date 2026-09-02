@@ -128,6 +128,8 @@
     </main>
     @include('admin.products.edit')
     @include('admin.products.create')
+    <x-footer />
+
 </body>
 <script src="{{ asset('js/admproducts.js') }}"></script>
 

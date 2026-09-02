@@ -84,5 +84,6 @@
     </main>
 
 </body>
+<x-footer />
 
 </html>
